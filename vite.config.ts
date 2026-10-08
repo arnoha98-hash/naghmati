@@ -5,7 +5,7 @@ import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
-  base: base: '/naghmati/',
+base: '/naghmati/',
   plugins: [
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
