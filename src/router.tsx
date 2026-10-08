@@ -7,7 +7,7 @@ import { routeTree } from './routeTree.gen'
 export const getRouter = () => {
   const router = createRouter({
     routeTree,
-    basepath: '/naghmati-music-skills',
+    basepath: '/naghmati',
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
   })
