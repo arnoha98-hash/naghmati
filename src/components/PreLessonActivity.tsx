@@ -41,20 +41,25 @@ function playPitch(frequency: number) {
   const oscillator = context.createOscillator()
   const gain = context.createGain()
   oscillator.type = 'sine'
-  oscillator.frequency.value = frequency
-  gain.gain.setValueAtTime(0.0001, context.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.22, context.currentTime + 0.04)
-  gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.65)
-  oscillator.connect(gain)
-  gain.connect(context.destination)
-  oscillator.start()
-  oscillator.stop(context.currentTime + 0.7)
-  oscillator.onended = () => { void context.close() }
+  oscillator.frequency.setValueAtTime(frequency, context.currentTime)
+  // Resume suspended audio contexts (common on mobile browsers) after the user's tap.
+  void context.resume().then(() => {
+    const startAt = context.currentTime
+    gain.gain.setValueAtTime(0.0001, startAt)
+    gain.gain.exponentialRampToValueAtTime(0.3, startAt + 0.04)
+    gain.gain.setValueAtTime(0.3, startAt + 0.45)
+    gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.75)
+    oscillator.connect(gain)
+    gain.connect(context.destination)
+    oscillator.start(startAt)
+    oscillator.stop(startAt + 0.8)
+    oscillator.onended = () => { void context.close() }
+  }).catch(() => { void context.close() })
 }
 
 export function PitchWarmup() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
-  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 180, answer: 1 }]
+  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 220, answer: 1 }]
   return (
     <div className="space-y-4">
       <p className="text-lg font-bold">اضغط على زر الاستماع لكل صوت، وبعدها اختار الصورة المناسبة: الطائر للصوت الحاد 🐦 والأسد للصوت الغليظ 🦁.</p>
