@@ -83,19 +83,30 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
       </div>
       {open && (
         <div className="mt-5 animate-bounce-in">
-          <div className="relative w-full aspect-[4/3] md:aspect-video rounded-3xl overflow-hidden bg-ink/5 border-2 border-ink/10">
-            <iframe
-              src={url}
-              title={activity.title}
-              className="absolute inset-0 w-full h-full"
-              allow="autoplay; microphone; fullscreen; midi"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-          <p className="text-sm text-ink/55 text-center mt-2">
-            إذا لم يظهر النشاط، اضغط زر <ExternalLink size={14} className="inline" /> لفتحه في نافذة جديدة.
-          </p>
+          {url.includes('share.google/') ? (
+            <div className="rounded-3xl bg-violet-50 border-2 border-violet-100 p-6 text-center">
+              <p className="text-lg font-bold mb-3">النشاط بيفتح على موقع Wordwall الخارجي.</p>
+              <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-violet-500 hover:bg-violet-600 text-white px-6 py-3 font-extrabold shadow-chunky">
+                افتح نشاط Wordwall <ExternalLink size={18} />
+              </a>
+            </div>
+          ) : (
+            <>
+              <div className="relative w-full aspect-[4/3] md:aspect-video rounded-3xl overflow-hidden bg-ink/5 border-2 border-ink/10">
+                <iframe
+                  src={url}
+                  title={activity.title}
+                  className="absolute inset-0 w-full h-full"
+                  allow="autoplay; microphone; fullscreen; midi"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-sm text-ink/55 text-center mt-2">
+                إذا لم يظهر النشاط، اضغط زر <ExternalLink size={14} className="inline" /> لفتحه في نافذة جديدة.
+              </p>
+            </>
+          )}
         </div>
       )}
     </div>
