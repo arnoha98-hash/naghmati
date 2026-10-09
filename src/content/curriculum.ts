@@ -10,7 +10,6 @@ export type Lesson = { id: string; title: string; emoji: string; objectives: str
 export type Unit = { id: string; title: string; emoji: string; lessons: Lesson[] }
 export type Grade = { id: string; title: string; shortTitle: string; emoji: string; tagline: string; theme: 'coral' | 'ocean'; image: string; units: Unit[] }
 
-const ML = 'https://musiclab.chromeexperiments.com'
 
 const grade1: Grade = {
   id: 'grade-1', title: 'الصف الأول', shortTitle: 'الأول', emoji: '🥁',
@@ -37,9 +36,8 @@ const grade1: Grade = {
             },
           ],
           activities: [
-            { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
-            { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
+            { type: 'lab', tool: 'piano', title: 'جرّب العزف على البيانو', description: 'افتح البيانو التفاعلي وجرّب النغمات. أضيفي لحن النشيد السلطاني بعد توفير النغمات المعتمدة.' },
+            { type: 'wordwall', url: 'https://share.google/qSAR09aySIWUNwVtJ', title: 'نشاط Wordwall', description: 'افتح النشاط التفاعلي المرسل من المعلمة.' },
           ],
         },
         {
@@ -56,13 +54,12 @@ const grade1: Grade = {
           teacher: { url: '' },
           quiz: [
             {
-              question: 'أي عنوان يطابق الدرس الحالي؟', emoji: '🎯',
-              options: ['العلامة الإيقاعية النوار (♩) والسكتة المقابلة لها', 'درس آخر في المهارات الموسيقية', 'نشاط خارج المنهج', 'المختبر الموسيقي فقط'], answer: 0, hint: 'اقرأ عنوان الدرس أعلى الصفحة ثم اختر البطاقة المطابقة.',
+              question: 'أيّ صورة تمثّل علامة موسيقية؟ وما اسمها؟', emoji: '🎯',
+              options: ['🐦 طائر', '🚗 سيارة', '✏️ قلم', '♩ علامة النوار'], answer: 3, hint: 'ابحث عن الرمز الموسيقي الذي له رأس بيضاوي وساق.',
             },
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -86,7 +83,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -114,7 +110,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -138,7 +133,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -162,7 +156,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -191,7 +184,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -215,7 +207,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -239,7 +230,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -268,7 +258,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -292,7 +281,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -316,7 +304,6 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -350,7 +337,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -375,7 +361,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -399,7 +384,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -428,7 +412,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -452,7 +435,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -476,7 +458,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -504,7 +485,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -528,7 +508,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -552,7 +531,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -581,7 +559,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -605,7 +582,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
@@ -629,7 +605,6 @@ const grade4: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'musiclab', url: ML, title: 'Chrome Music Lab', description: 'استكشف تجربة موسيقية تفاعلية.' },
             { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
           ],
         },
