@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Lesson } from '@/content/curriculum'
 import { playCorrect, playWrong } from '@/lib/audio'
+import { canSpeak, speak } from '@/lib/speech'
 
 type Warmup = { question: string; options: string[]; answer: number; clue?: string }
 const warmups: Record<string, Warmup> = {
@@ -41,14 +42,14 @@ function playPitch(frequency: number) {
   const context = new AudioContextClass()
   const oscillator = context.createOscillator()
   const gain = context.createGain()
-  oscillator.type = 'sine'
+  oscillator.type = 'triangle'
   oscillator.frequency.setValueAtTime(frequency, context.currentTime)
   // Resume suspended audio contexts (common on mobile browsers) after the user's tap.
   void context.resume().then(() => {
     const startAt = context.currentTime
     gain.gain.setValueAtTime(0.0001, startAt)
-    gain.gain.exponentialRampToValueAtTime(0.95, startAt + 0.04)
-    gain.gain.setValueAtTime(0.95, startAt + 0.45)
+    gain.gain.exponentialRampToValueAtTime(0.7, startAt + 0.04)
+    gain.gain.setValueAtTime(0.7, startAt + 0.45)
     gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.75)
     oscillator.connect(gain)
     gain.connect(context.destination)
@@ -60,7 +61,7 @@ function playPitch(frequency: number) {
 
 export function PitchWarmup() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
-  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 82, answer: 1 }]
+  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 55, answer: 1 }]
   return (
     <div className="space-y-4">
       <p className="text-lg font-bold">اضغط على زر الاستماع لكل صوت، وبعدها اختار الصورة المناسبة: الطائر للصوت الحاد 🐦 والأسد للصوت الغليظ 🦁.</p>
@@ -171,10 +172,11 @@ function HabouhIllustration() {
 function HabouhWarmup() {
   const [choice, setChoice] = useState<number | null>(null)
   const options = ['حبّوه', 'الأسد', 'الطائر']
+  const question = 'انظروا إلى هذه الشخصية الكرتونية، ما اسمها؟'
   return (
     <div className="text-center">
       <div className="rounded-3xl bg-white p-4 mb-4"><HabouhIllustration /></div>
-      <p className="text-xl font-extrabold mb-4">انظروا إلى هذه الشخصية الكرتونية، ما اسمها؟</p>
+      <div className="flex items-center justify-center gap-3 mb-4"><p className="text-xl font-extrabold">{question}</p>{canSpeak() && <button type="button" onClick={() => speak(question)} className="shrink-0 rounded-full bg-amber-300 px-4 py-2 font-bold" aria-label="اقرأ السؤال بصوت عالٍ">🔊 اقرأ السؤال</button>}</div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {options.map((option, index) => <button type="button" key={option} onClick={() => { setChoice(index); index === 0 ? playCorrect() : playWrong() }} className={`rounded-2xl border-2 p-4 text-lg font-extrabold transition ${choice === index ? (index === 0 ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}>{option}</button>)}
       </div>
