@@ -106,7 +106,7 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'wordwall', url: 'https://wordwall.net/embed/4dbd8c6d77e7402ca5356394c64ec9d7?themeId=65&templateId=3&fontStackId=0', title: 'نشاط Wordwall: حبّوه موه تدوري', description: 'نشاط تفاعلي مرتبط باللعبة الشعبية حبّوه موه تدوري.' },
+            { type: 'wordwall', url: 'https://wordwall.net/embed/cd8de31fc2c6471fb356bd654f053838?themeId=65&templateId=30&fontStackId=0', title: 'نشاط Wordwall: حبّوه موه تدوري', description: 'نشاط تفاعلي مرتبط باللعبة الشعبية حبّوه موه تدوري.' },
           ],
         },
         {
