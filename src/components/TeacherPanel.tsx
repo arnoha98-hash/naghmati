@@ -12,7 +12,6 @@ import { img } from '@/lib/images'
 export default function TeacherPanel({ lesson }: { lesson: Lesson }) {
   const embed = toEmbedUrl(lesson.teacher.url)
   const anthemVideo = lesson.anthem?.explanationVideoUrl ? toEmbedUrl(lesson.anthem.explanationVideoUrl) : ''
-  const anthemListeningVideo = lesson.anthem?.listeningVideoUrl ? toEmbedUrl(lesson.anthem.listeningVideoUrl) : ''
   const [step, setStep] = useState(0)
   const [talking, setTalking] = useState(false)
   const [speechOk, setSpeechOk] = useState(false)
@@ -119,32 +118,16 @@ export default function TeacherPanel({ lesson }: { lesson: Lesson }) {
         </div>
       </div>
       </div>
-      {lesson.anthem && (
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="rounded-[2rem] bg-white p-5 shadow-chunky">
-            <div className="font-extrabold text-lg mb-2">🎬 فيديو شرح النشيد</div>
-            {anthemVideo ? (
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-ink/5">
-                <iframe src={anthemVideo} title={`شرح ${lesson.title}`} className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
-              </div>
-            ) : (
-              <div className="rounded-2xl bg-cream p-4 text-ink/65">مكان جاهز لإضافة رابط فيديو شرح النشيد من YouTube أو Genially أو أداة ذكاء اصطناعي.</div>
-            )}
+      <div className="rounded-[2rem] bg-white p-5 shadow-chunky">
+        <div className="font-extrabold text-lg mb-2">🎬 فيديو شرح الدرس من YouTube</div>
+        {anthemVideo ? (
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-ink/5">
+            <iframe src={anthemVideo} title={`شرح ${lesson.title}`} className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
           </div>
-          <div className="rounded-[2rem] bg-white p-5 shadow-chunky">
-            <div className="font-extrabold text-lg mb-2">🎧 الاستماع إلى النشيد</div>
-            {lesson.anthem.listeningAudioUrl ? (
-              <audio controls className="w-full mt-3" src={lesson.anthem.listeningAudioUrl} />
-            ) : anthemListeningVideo ? (
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-ink/5">
-                <iframe src={anthemListeningVideo} title={`استماع ${lesson.title}`} className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
-              </div>
-            ) : (
-              <div className="rounded-2xl bg-cream p-4 text-ink/65">مكان جاهز لإضافة ملف صوتي MP3 أو رابط فيديو الاستماع للنشيد.</div>
-            )}
-          </div>
-        </div>
-      )}
+        ) : (
+          <div className="rounded-2xl bg-cream p-5 text-ink/65">مكان مخصص لفيديو شرح «{lesson.title}». سيظهر الفيديو هنا عند إضافة رابط YouTube من لوحة المعلمة.</div>
+        )}
+      </div>
     </div>
   )
 }
