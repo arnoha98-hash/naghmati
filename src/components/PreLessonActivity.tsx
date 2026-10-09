@@ -176,7 +176,7 @@ function HabouhWarmup() {
   return (
     <div className="text-center">
       <div className="rounded-3xl bg-white p-4 mb-4"><HabouhIllustration /></div>
-      <div className="flex items-center justify-center gap-3 mb-4"><p className="text-xl font-extrabold">{question}</p>{canSpeak() && <button type="button" onClick={() => speak(question)} className="shrink-0 rounded-full bg-amber-300 px-4 py-2 font-bold" aria-label="اقرأ السؤال بصوت عالٍ">🔊 اقرأ السؤال</button>}</div>
+      <div className="flex items-center justify-center gap-3 mb-4"><p className="text-xl font-extrabold">{question}</p>{canSpeak() && <button type="button" onClick={() => speak(question)} className="shrink-0 rounded-full bg-amber-300 p-3 font-bold" aria-label="تشغيل صوت السؤال">🔊</button>}</div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {options.map((option, index) => <button type="button" key={option} onClick={() => { setChoice(index); index === 0 ? playCorrect() : playWrong() }} className={`rounded-2xl border-2 p-4 text-lg font-extrabold transition ${choice === index ? (index === 0 ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}>{option}</button>)}
       </div>
