@@ -27,7 +27,7 @@ const steps = [
 
 function LessonPage() {
   const { gradeId, lessonId } = Route.useLoaderData()
-  const { grade, unit, lesson, prev, next } = getLesson(gradeId, lessonId)!
+  const { grade, unit, lesson, prev, prevUnit, next, nextUnit } = getLesson(gradeId, lessonId)!
   const t = gradeTheme[grade.theme]
   const activities = lesson.activities.filter(isActivityReady)
 
@@ -97,7 +97,7 @@ function LessonPage() {
 
         <section id="quiz" className="scroll-mt-24">
           <SectionTitle n={3} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
-          <Quiz key={lesson.id} questions={lesson.quiz} progressKey={lessonKey(grade.id, lesson.id)} />
+          <Quiz key={lesson.id} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />
         </section>
 
         <section id="practice" className="scroll-mt-24">
@@ -123,7 +123,7 @@ function LessonPage() {
           {prev ? (
             <Link
               to="/lesson/$gradeId/$lessonId"
-              params={{ gradeId: grade.id, lessonId: prev.id }}
+              params={{ gradeId: grade.id, lessonId: `${prevUnit?.id ?? unit.id}-${prev.id}` }}
               className="rounded-3xl bg-white p-4 md:p-5 shadow-chunky hover:-translate-y-0.5 transition"
             >
               <span className="text-sm font-bold text-ink/50">→ الدرس السابق</span>
@@ -137,7 +137,7 @@ function LessonPage() {
           {next ? (
             <Link
               to="/lesson/$gradeId/$lessonId"
-              params={{ gradeId: grade.id, lessonId: next.id }}
+              params={{ gradeId: grade.id, lessonId: `${nextUnit?.id ?? unit.id}-${next.id}` }}
               className={`rounded-3xl ${t.button} text-white p-4 md:p-5 shadow-chunky hover:-translate-y-0.5 transition text-left`}
             >
               <span className="text-sm font-bold text-white/80">الدرس التالي ←</span>
