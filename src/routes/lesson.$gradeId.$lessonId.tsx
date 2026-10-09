@@ -3,6 +3,7 @@ import { getLesson } from '@/content/curriculum'
 import { gradeTheme } from '@/lib/theme'
 import { lessonKey } from '@/lib/progress'
 import TeacherPanel from '@/components/TeacherPanel'
+import PreLessonActivity from '@/components/PreLessonActivity'
 import Quiz from '@/components/Quiz'
 import ActivityCard, { isActivityReady } from '@/components/ActivityCard'
 
@@ -18,9 +19,10 @@ export const Route = createFileRoute('/lesson/$gradeId/$lessonId')({
 })
 
 const steps = [
-  { id: 'watch', n: 1, label: 'شاهد وتعلّم', emoji: '🎬' },
-  { id: 'quiz', n: 2, label: 'أجب عن الأسئلة', emoji: '🃏' },
-  { id: 'practice', n: 3, label: 'طبّق والعب', emoji: '🎮' },
+  { id: 'warmup', n: 1, label: 'تهيّأ', emoji: '💡' },
+  { id: 'watch', n: 2, label: 'شاهد وتعلّم', emoji: '🎬' },
+  { id: 'quiz', n: 3, label: 'أجب عن الأسئلة', emoji: '🃏' },
+  { id: 'practice', n: 4, label: 'طبّق والعب', emoji: '🎮' },
 ]
 
 function LessonPage() {
@@ -66,7 +68,7 @@ function LessonPage() {
 
       {/* شريط الخطوات */}
       <div className="max-w-5xl mx-auto px-4 -mt-9 relative z-10">
-        <div className="grid grid-cols-3 gap-2 md:gap-4 rounded-[2rem] bg-white p-2 md:p-3 shadow-chunky">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 rounded-[2rem] bg-white p-2 md:p-3 shadow-chunky">
           {steps.map((s) => (
             <a
               key={s.id}
@@ -84,18 +86,22 @@ function LessonPage() {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-14">
+        <section id="warmup" className="scroll-mt-24">
+          <PreLessonActivity lesson={lesson} />
+        </section>
+
         <section id="watch" className="scroll-mt-24">
-          <SectionTitle n={1} title="شاهد وتعلّم مع المعلم" emoji="🎬" />
+          <SectionTitle n={2} title="شاهد وتعلّم مع المعلم" emoji="🎬" />
           <TeacherPanel lesson={lesson} />
         </section>
 
         <section id="quiz" className="scroll-mt-24">
-          <SectionTitle n={2} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
+          <SectionTitle n={3} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
           <Quiz key={lesson.id} questions={lesson.quiz} progressKey={lessonKey(grade.id, lesson.id)} />
         </section>
 
         <section id="practice" className="scroll-mt-24">
-          <SectionTitle n={3} title="التطبيق والأنشطة الموسيقية" emoji="🎮" />
+          <SectionTitle n={4} title="التطبيق والأنشطة الموسيقية" emoji="🎮" />
           {activities.length > 0 ? (
             <div className="space-y-4">
               {activities.map((a, i) => (
