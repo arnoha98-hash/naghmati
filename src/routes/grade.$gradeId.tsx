@@ -22,8 +22,8 @@ function GradePage() {
   const grade = getGrade(gradeId)!
   const t = gradeTheme[grade.theme]
   const stars = useStars()
-  const all = grade.units.flatMap((u) => u.lessons)
-  const done = all.filter((l) => (stars[lessonKey(grade.id, `${u.id}-${l.id}`)] ?? 0) > 0).length
+  const all = grade.units.flatMap((unit) => unit.lessons.map((lesson) => ({ unit, lesson })))
+  const done = all.filter(({ unit, lesson }) => (stars[lessonKey(grade.id, `${unit.id}-${lesson.id}`)] ?? 0) > 0).length
 
   return (
     <div>
