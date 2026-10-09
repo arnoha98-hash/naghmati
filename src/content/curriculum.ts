@@ -6,7 +6,7 @@ export type Question = { question: string; emoji?: string; options: string[]; an
 export type Activity =
   | { type: 'lab'; tool: LabTool; title: string; description: string }
   | { type: 'musiclab' | 'wordwall' | 'genially' | 'embed'; url: string; title: string; description: string }
-export type Lesson = { id: string; title: string; emoji: string; objectives: string[]; intro: string[]; teacher: TeacherMedia; anthem?: AnthemMedia; quiz: Question[]; activities: Activity[] }
+export type Lesson = { id: string; title: string; emoji: string; objectives: string[]; intro: string[]; teacher: TeacherMedia; warmupVideoUrl?: string; anthem?: AnthemMedia; quiz: Question[]; activities: Activity[] }
 export type Unit = { id: string; title: string; emoji: string; lessons: Lesson[] }
 export type Grade = { id: string; title: string; shortTitle: string; emoji: string; tagline: string; theme: 'coral' | 'ocean'; image: string; units: Unit[] }
 
@@ -27,7 +27,7 @@ const grade1: Grade = {
             'هذا المحتوى مرتبط بترتيب منهج المهارات الموسيقية العماني كما ورد في دليل المعلم المرفق.',
             'شاهد شرح المعلم الافتراضي، ثم أجب عن السؤال، وبعدها انتقل إلى التطبيق أو المختبر.',
           ],
-          teacher: { url: '' },
+          teacher: { url: 'https://www.youtube.com/embed/MxsoSw5j23o' },
           anthem: { explanationVideoUrl: '', listeningAudioUrl: '', listeningVideoUrl: '' },
           quiz: [
             {
@@ -37,7 +37,7 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب العزف على البيانو', description: 'افتح البيانو التفاعلي وجرّب النغمات. أضيفي لحن النشيد السلطاني بعد توفير النغمات المعتمدة.' },
-            { type: 'wordwall', url: '', title: 'نشاط Wordwall', description: 'يمكن للمعلمة إضافة رابط نشاط Wordwall الخاص بهذا الدرس.' },
+            { type: 'wordwall', url: 'https://wordwall.net/embed/83acd95bdcae4765ab416c1bda27111a?themeId=66&templateId=3&fontStackId=0', title: 'نشاط السلام السلطاني', description: 'نشاط تفاعلي للتدرب على السلام السلطاني.' },
           ],
         },
         {
@@ -51,7 +51,7 @@ const grade1: Grade = {
             'هذا المحتوى مرتبط بترتيب منهج المهارات الموسيقية العماني كما ورد في دليل المعلم المرفق.',
             'شاهد شرح المعلم الافتراضي، ثم أجب عن السؤال، وبعدها انتقل إلى التطبيق أو المختبر.',
           ],
-          teacher: { url: '' },
+          teacher: { url: 'https://www.youtube.com/embed/L5RoFUL0RKk' },
           quiz: [
             {
               question: 'أيّ صورة تمثّل علامة موسيقية؟ وما اسمها؟', emoji: '🎯',
@@ -74,7 +74,8 @@ const grade1: Grade = {
             'هذا المحتوى مرتبط بترتيب منهج المهارات الموسيقية العماني كما ورد في دليل المعلم المرفق.',
             'شاهد شرح المعلم الافتراضي، ثم أجب عن السؤال، وبعدها انتقل إلى التطبيق أو المختبر.',
           ],
-          teacher: { url: '' },
+          teacher: { url: 'https://www.youtube.com/embed/AKg46bPYQrs' },
+          warmupVideoUrl: 'https://www.youtube.com/embed/asVXo9Ry1OQ',
           quiz: [
             {
               question: 'أي عنوان يطابق الدرس الحالي؟', emoji: '🎯',
@@ -83,7 +84,7 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
+            { type: 'wordwall', url: 'https://wordwall.net/embed/628aaafec501433dbfaa1dff878db408?themeId=1&templateId=3&fontStackId=0', title: 'نشاط Wordwall: الحِدّة والغلظة', description: 'نشاط تفاعلي للتمييز بين الأصوات الحادة والغليظة.' },
           ],
         },
       ],
@@ -101,7 +102,7 @@ const grade1: Grade = {
             'هذا المحتوى مرتبط بترتيب منهج المهارات الموسيقية العماني كما ورد في دليل المعلم المرفق.',
             'شاهد شرح المعلم الافتراضي، ثم أجب عن السؤال، وبعدها انتقل إلى التطبيق أو المختبر.',
           ],
-          teacher: { url: '' },
+          teacher: { url: 'https://www.youtube.com/embed/I5nx-iQj0e8' },
           quiz: [
             {
               question: 'أي عنوان يطابق الدرس الحالي؟', emoji: '🎯',
@@ -110,7 +111,7 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
+            { type: 'wordwall', url: 'https://wordwall.net/embed/4dbd8c6d77e7402ca5356394c64ec9d7?themeId=65&templateId=3&fontStackId=0', title: 'نشاط Wordwall: حبّوه موه تدوري', description: 'نشاط تفاعلي مرتبط باللعبة الشعبية حبّوه موه تدوري.' },
           ],
         },
         {
