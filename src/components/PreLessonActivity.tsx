@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Lesson } from '@/content/curriculum'
 
 type Warmup = { question: string; options: string[]; answer: number; clue?: string }
 const warmups: Record<string, Warmup> = {
   'النشيد الوطني': { question: 'أيّ علم هو علم سلطنة عُمان؟', options: ['سلطنة عُمان', 'اليابان', 'فرنسا'], answer: 0, clue: 'لاحظ الألوان الثلاثة والشريط الأحمر بجانب السارية.' },
   'العلامة الإيقاعية النوار (♩) والسكتة المقابلة لها': { question: 'صفّق نبضة واحدة ثم توقّف: أي رمز يعبّر عن صوت النوار؟', options: ['♩ صوت مدته نبضة', '𝄽 سكتة', '🎹 آلة موسيقية', '🎼 مدرج'], answer: 0 },
-  'الحِدّة والغلظة – السرعة والبطء': { question: 'أيّ زوج يوضح اختلاف طبقة الصوت؟', options: ['صوت عصفور وصوت طبل غليظ', 'صوتان متطابقان', 'صمت وصمت', 'لونان مختلفان'], answer: 0 },
   'اللعبة الشعبية (حبّوه موه تدوري)': { question: 'ما الذي يجعل اللعبة الشعبية الجماعية ممتعة؟', options: ['حركة وغناء بتناسق', 'كل شخص يتحرك وحده بلا إيقاع', 'الجلوس طوال الوقت', 'تجاهل المجموعة'], answer: 0 },
   'المدرج الموسيقي ومفتاح صول': { question: 'كم خطًا يتكوّن منه المدرج الموسيقي المعتاد؟', options: ['خمسة خطوط', 'خط واحد', 'ثلاثة خطوط', 'عشرة خطوط'], answer: 0 },
   'تطبيقات على المدرج الموسيقي': { question: 'أين نضع النغمات لقراءتها موسيقيًا؟', options: ['على الخطوط والفراغات', 'حول إطار الصفحة', 'داخل عنوان الدرس', 'على لوحة المفاتيح فقط'], answer: 0 },
@@ -53,7 +52,7 @@ function playPitch(frequency: number) {
   oscillator.onended = () => { void context.close() }
 }
 
-function PitchWarmup() {
+export function PitchWarmup() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 180, answer: 1 }]
   return (
@@ -76,6 +75,69 @@ function PitchWarmup() {
           {answers[index] !== undefined && <p className="mt-3 font-extrabold" aria-live="polite">{answers[index] === sound.answer ? 'أحسنت! اختيار صحيح ⭐' : 'محاولة جميلة، اسمع الصوت مرة أخرى وجرب تاني.'}</p>}
         </div>
       ))}
+    </div>
+  )
+}
+
+
+export function DifferentSoundQuiz() {
+  const [selected, setSelected] = useState<number | null>(null)
+  const [round, setRound] = useState(0)
+  const patterns = [
+    { frequencies: [440, 440, 880], odd: 2 },
+    { frequencies: [660, 330, 660], odd: 1 },
+    { frequencies: [220, 440, 440], odd: 0 },
+  ]
+  const pattern = patterns[round % patterns.length]
+  const play = (frequency: number) => playPitch(frequency)
+  return (
+    <div className="mt-5 rounded-[2rem] border-2 border-violet-100 bg-violet-50 p-5">
+      <h3 className="text-xl md:text-2xl font-extrabold mb-2">🎧 اختَر الصوت المختلف</h3>
+      <p className="mb-4 text-ink/70">استمع إلى الأصوات الثلاثة واحدًا تلو الآخر، ثم حدّد الصوت الذي تختلف طبقته عن الصوتين الآخرين.</p>
+      <div className="grid grid-cols-3 gap-3">
+        {pattern.frequencies.map((frequency, i) => (
+          <div key={i} className="rounded-2xl bg-white p-3 text-center">
+            <p className="font-extrabold mb-2">الصوت {['الأول','الثاني','الثالث'][i]}</p>
+            <button type="button" onClick={() => play(frequency)} className="w-full rounded-xl bg-sky-100 p-3 font-extrabold hover:bg-sky-200" aria-label={`استمع إلى الصوت ${i+1}`}>🔊 استمع</button>
+            <button type="button" onClick={() => setSelected(i)} className={`mt-2 w-full rounded-xl border-2 p-3 font-extrabold ${selected === i ? (i === pattern.odd ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-slate-100 bg-amber-50 hover:bg-amber-100'}`}>هذا هو المختلف</button>
+          </div>
+        ))}
+      </div>
+      {selected !== null && <p className="mt-4 font-extrabold" aria-live="polite">{selected === pattern.odd ? 'أحسنت! هذا هو الصوت المختلف ⭐' : 'استمع مرة أخرى؛ يوجد صوت واحد تختلف طبقته عن الصوتين الآخرين.'}</p>}
+      <button type="button" onClick={() => { setRound((r) => (r + 1) % patterns.length); setSelected(null) }} className="mt-4 rounded-full bg-violet-500 px-5 py-3 font-extrabold text-white hover:bg-violet-600">جولة جديدة ↻</button>
+    </div>
+  )
+}
+
+function ClockWarmup() {
+  const [running, setRunning] = useState(false)
+  const [beat, setBeat] = useState(0)
+  useEffect(() => {
+    if (!running) return
+    const timer = window.setInterval(() => {
+      setBeat((b) => (b + 1) % 12)
+      playPitch(880)
+    }, 1000)
+    return () => window.clearInterval(timer)
+  }, [running])
+  return (
+    <div className="rounded-3xl bg-white p-4 md:p-6 text-center">
+      <p className="text-lg font-bold mb-4">شاهد العسكري وهو يسير مع عقرب الساعة بخطوات منتظمة، واستمع إلى صوت النوار مع كل خطوة.</p>
+      <div className="relative mx-auto mb-5 h-64 w-64 max-w-full">
+        <svg viewBox="0 0 240 240" className="h-full w-full" role="img" aria-label="ساعة بعقرب يتحرك مع خطوات العسكري">
+          <circle cx="120" cy="120" r="103" fill="#fffdf5" stroke="#334155" strokeWidth="7" />
+          {Array.from({length:12},(_,i) => <g key={i} transform={`rotate(${i*30} 120 120)`}><line x1="120" y1="25" x2="120" y2="38" stroke="#475569" strokeWidth="4" strokeLinecap="round"/><text x="120" y="55" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#334155" transform={`rotate(${-i*30} 120 55)`}>{i===0?12:i}</text></g>)}
+          <g transform={`rotate(${beat*30} 120 120)`} style={{transition:'transform 900ms linear'}}>
+            <line x1="120" y1="120" x2="120" y2="35" stroke="#e11d48" strokeWidth="5" strokeLinecap="round"/>
+            <circle cx="120" cy="35" r="5" fill="#e11d48"/>
+            <text x="120" y="24" textAnchor="middle" fontSize="25" transform="rotate(0 120 24)">👮</text>
+          </g>
+          <circle cx="120" cy="120" r="8" fill="#334155"/>
+        </svg>
+      </div>
+      <p className="font-extrabold mb-4">كل خطوة منتظمة تمثّل نبضة واحدة ♩</p>
+      <button type="button" onClick={() => setRunning((v) => !v)} className="rounded-full bg-amber-400 px-7 py-3 font-extrabold shadow-chunky hover:bg-amber-500">{running ? 'إيقاف الساعة ⏸' : 'ابدأ حركة الساعة والصوت ▶'}</button>
+      <p className="text-sm text-ink/60 mt-3">يتحرك العقرب والعسكري بانتظام، ويُسمع صوت قصير مع كل نبضة.</p>
     </div>
   )
 }
@@ -126,16 +188,16 @@ export default function PreLessonActivity({ lesson }: { lesson: Lesson }) {
   return (
     <section className="rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-sky-100 border-2 border-white p-5 md:p-7 shadow-chunky">
       <div className="flex items-center gap-3 mb-4"><span className="grid place-items-center w-14 h-14 rounded-2xl bg-amber-300 text-3xl">💡</span><div><h2 className="text-2xl md:text-3xl font-extrabold">تهيّأ قبل أن تتعلّم</h2><p className="text-ink/65">نشاط قصير مرتبط بموضوع الدرس.</p></div></div>
-      <p className="text-xl font-extrabold mb-4">{activity.question}</p>
-      {lesson.warmupVideoUrl ? (
+      {lesson.title !== 'الحِدّة والغلظة – السرعة والبطء' && lesson.title !== 'العلامة الإيقاعية النوار (♩) والسكتة المقابلة لها' && <p className="text-xl font-extrabold mb-4">{activity.question}</p>}
+      {lesson.title === 'العلامة الإيقاعية النوار (♩) والسكتة المقابلة لها' ? (
+        <ClockWarmup />
+      ) : lesson.warmupVideoUrl ? (
         <div className="rounded-2xl bg-ink p-2 md:p-3 shadow-chunky">
           <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
             <iframe src={lesson.warmupVideoUrl} title={`تمهيد درس ${lesson.title}`} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen loading="lazy" />
           </div>
           <p className="text-sm text-center text-ink/65 mt-3">شاهد الفيديو التمهيدي، ثم انتقل إلى فيديو الشرح والنشاط التفاعلي.</p>
         </div>
-      ) : lesson.title === 'الحِدّة والغلظة – السرعة والبطء' ? (
-        <PitchWarmup />
       ) : lesson.title === 'اللعبة الشعبية (حبّوه موه تدوري)' ? (
         <HabouhWarmup />
       ) : isNationalAnthem ? (
