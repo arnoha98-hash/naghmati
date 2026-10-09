@@ -4,6 +4,7 @@ import { gradeTheme } from '@/lib/theme'
 import { lessonKey } from '@/lib/progress'
 import TeacherPanel from '@/components/TeacherPanel'
 import PreLessonActivity from '@/components/PreLessonActivity'
+import FlagColoring from '@/components/FlagColoring'
 import Quiz from '@/components/Quiz'
 import ActivityCard, { isActivityReady } from '@/components/ActivityCard'
 
@@ -115,6 +116,12 @@ function LessonPage() {
               <Link to="/lab" className="inline-block mt-5 rounded-full bg-amber-400 px-6 py-3 font-extrabold shadow-chunky">
                 أو جرّب المختبر الموسيقي 🎹
               </Link>
+            </div>
+          )}
+          {(lesson.title === 'النشيد الوطني' || lesson.title === 'نشيد (عَلَم بلادي)') && (
+            <div className="mt-6">
+              <h3 className="text-xl md:text-2xl font-extrabold mb-3">🎨 تطبيق عملي: لوّن علم سلطنة عُمان</h3>
+              <FlagColoring />
             </div>
           )}
         </section>
