@@ -35,6 +35,86 @@ function FlagIllustration({ country }: { country: 'oman' | 'japan' | 'france' })
   return <svg viewBox="0 0 120 72" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم سلطنة عمان"><rect width="120" height="24" fill="#fff"/><rect y="24" width="120" height="24" fill="#d8232a"/><rect y="48" width="120" height="24" fill="#00843d"/><rect width="25" height="72" fill="#d8232a"/><path d="M8 19 L17 27 L10 35 L19 43 M19 19 L10 27 L17 35 L8 43" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>
 }
 
+function playPitch(frequency: number) {
+  const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  if (!AudioContextClass) return
+  const context = new AudioContextClass()
+  const oscillator = context.createOscillator()
+  const gain = context.createGain()
+  oscillator.type = 'sine'
+  oscillator.frequency.value = frequency
+  gain.gain.setValueAtTime(0.0001, context.currentTime)
+  gain.gain.exponentialRampToValueAtTime(0.22, context.currentTime + 0.04)
+  gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.65)
+  oscillator.connect(gain)
+  gain.connect(context.destination)
+  oscillator.start()
+  oscillator.stop(context.currentTime + 0.7)
+  oscillator.onended = () => { void context.close() }
+}
+
+function PitchWarmup() {
+  const [answers, setAnswers] = useState<Record<number, number>>({})
+  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 180, answer: 1 }]
+  return (
+    <div className="space-y-4">
+      <p className="text-lg font-bold">اضغط على زر الاستماع لكل صوت، وبعدها اختار الصورة المناسبة: الطائر للصوت الحاد 🐦 والأسد للصوت الغليظ 🦁.</p>
+      {sounds.map((sound, index) => (
+        <div key={sound.label} className="rounded-2xl border-2 border-amber-100 bg-white p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <span className="font-extrabold text-lg">{sound.label}</span>
+            <button type="button" onClick={() => playPitch(sound.frequency)} className="rounded-full bg-sky-100 px-5 py-3 font-extrabold hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500">🔊 اسمع الصوت</button>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[{ label: 'صوت حاد', emoji: '🐦' }, { label: 'صوت غليظ', emoji: '🦁' }].map((option, optionIndex) => (
+              <button type="button" key={option.label} onClick={() => setAnswers((current) => ({ ...current, [index]: optionIndex }))} aria-pressed={answers[index] === optionIndex} className={`rounded-2xl border-2 p-4 transition ${answers[index] === optionIndex ? (optionIndex === sound.answer ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-slate-100 bg-amber-50 hover:bg-amber-100'}`}>
+                <span className="block text-5xl mb-2" role="img" aria-label={option.label}>{option.emoji}</span>
+                <span className="font-extrabold">{option.label}</span>
+              </button>
+            ))}
+          </div>
+          {answers[index] !== undefined && <p className="mt-3 font-extrabold" aria-live="polite">{answers[index] === sound.answer ? 'أحسنت! اختيار صحيح ⭐' : 'محاولة جميلة، اسمع الصوت مرة أخرى وجرب تاني.'}</p>}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function HabouhIllustration() {
+  return (
+    <svg viewBox="0 0 240 220" role="img" aria-label="شخصية حبوه الكرتونية بملابس عمانية تراثية" className="mx-auto w-full max-w-[220px]">
+      <ellipse cx="120" cy="202" rx="72" ry="10" fill="#e5e7eb" />
+      <path d="M48 199 Q50 145 80 132 L160 132 Q190 145 192 199Z" fill="#9b4d2e" stroke="#71351f" strokeWidth="3" />
+      <path d="M72 151 Q120 170 168 151 L181 199 L59 199Z" fill="#c47b45" />
+      <path d="M73 83 Q64 39 120 31 Q176 39 167 83 L159 127 L81 127Z" fill="#272b32" />
+      <ellipse cx="120" cy="91" rx="47" ry="53" fill="#c98b60" stroke="#8a573c" strokeWidth="3" />
+      <path d="M75 82 Q72 35 120 35 Q168 35 165 82 Q147 59 120 62 Q93 59 75 82Z" fill="#272b32" />
+      <path d="M83 103 Q92 96 101 103 M139 103 Q148 96 157 103" fill="none" stroke="#43291f" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="96" cy="111" r="4" fill="#272b32" /><circle cx="144" cy="111" r="4" fill="#272b32" />
+      <path d="M108 130 Q120 140 132 130" fill="none" stroke="#7a302d" strokeWidth="4" strokeLinecap="round" />
+      <path d="M81 92 Q96 84 106 91 M134 91 Q145 84 159 92" fill="none" stroke="#272b32" strokeWidth="4" strokeLinecap="round" />
+      <path d="M76 75 Q51 88 66 120 L81 131 L88 119Z M164 75 Q189 88 174 120 L159 131 L152 119Z" fill="#272b32" />
+      <path d="M90 151 L101 161 L111 151 L120 162 L130 151 L140 161 L151 151" fill="none" stroke="#f7d9a2" strokeWidth="4" />
+      <circle cx="120" cy="175" r="5" fill="#f7d9a2" />
+    </svg>
+  )
+}
+
+function HabouhWarmup() {
+  const [choice, setChoice] = useState<number | null>(null)
+  const options = ['حبّوه', 'الأسد', 'الطائر']
+  return (
+    <div className="text-center">
+      <div className="rounded-3xl bg-white p-4 mb-4"><HabouhIllustration /></div>
+      <p className="text-xl font-extrabold mb-4">بصّوا على الشخصية الكرتونية دي… تتوقعوا اسمها إيه؟</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {options.map((option, index) => <button type="button" key={option} onClick={() => setChoice(index)} className={`rounded-2xl border-2 p-4 text-lg font-extrabold transition ${choice === index ? (index === 0 ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}>{option}</button>)}
+      </div>
+      {choice !== null && <p className="font-extrabold text-lg mt-4" aria-live="polite">{choice === 0 ? 'برافو! دي حبّوه 🎉 يلا نتعرف على اللعبة الشعبية.' : 'قريب! جرّب تاني، اسم الشخصية حبّوه.'}</p>}
+    </div>
+  )
+}
+
 export default function PreLessonActivity({ lesson }: { lesson: Lesson }) {
   const [choice, setChoice] = useState<number | null>(null)
   const activity = warmups[lesson.title] ?? {
@@ -47,7 +127,11 @@ export default function PreLessonActivity({ lesson }: { lesson: Lesson }) {
     <section className="rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-sky-100 border-2 border-white p-5 md:p-7 shadow-chunky">
       <div className="flex items-center gap-3 mb-4"><span className="grid place-items-center w-14 h-14 rounded-2xl bg-amber-300 text-3xl">💡</span><div><h2 className="text-2xl md:text-3xl font-extrabold">تهيّأ قبل أن تتعلّم</h2><p className="text-ink/65">نشاط قصير مرتبط بموضوع الدرس.</p></div></div>
       <p className="text-xl font-extrabold mb-4">{activity.question}</p>
-      {isNationalAnthem ? (
+      {lesson.title === 'الحِدّة والغلظة – السرعة والبطء' ? (
+        <PitchWarmup />
+      ) : lesson.title === 'اللعبة الشعبية (حبّوه موه تدوري)' ? (
+        <HabouhWarmup />
+      ) : isNationalAnthem ? (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {(['oman', 'japan', 'france'] as const).map((country, i) => <button key={country} onClick={() => setChoice(i)} className={`rounded-2xl border-2 p-4 font-bold transition ${choice === i ? (i === activity.answer ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}><FlagIllustration country={country}/><span className="block mt-3">{['سلطنة عُمان', 'اليابان', 'فرنسا'][i]}</span></button>)}
         </div>
