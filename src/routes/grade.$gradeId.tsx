@@ -23,7 +23,7 @@ function GradePage() {
   const t = gradeTheme[grade.theme]
   const stars = useStars()
   const all = grade.units.flatMap((u) => u.lessons)
-  const done = all.filter((l) => (stars[lessonKey(grade.id, l.id)] ?? 0) > 0).length
+  const done = all.filter((l) => (stars[lessonKey(grade.id, `${u.id}-${l.id}`)] ?? 0) > 0).length
 
   return (
     <div>
@@ -79,12 +79,12 @@ function GradePage() {
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {unit.lessons.map((lesson, li) => {
-                  const s = stars[lessonKey(grade.id, lesson.id)] ?? 0
+                  const s = stars[lessonKey(grade.id, `${unit.id}-${lesson.id}`)] ?? 0
                   return (
                     <Link
                       key={lesson.id}
                       to="/lesson/$gradeId/$lessonId"
-                      params={{ gradeId: grade.id, lessonId: lesson.id }}
+                      params={{ gradeId: grade.id, lessonId: `${unit.id}-${lesson.id}` }}
                       className="group rounded-3xl bg-white p-5 shadow-chunky transition hover:-translate-y-1 flex flex-col"
                     >
                       <div className="flex items-start justify-between">
