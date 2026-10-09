@@ -619,7 +619,21 @@ export function getGrade(gradeId: string) { return grades.find((g) => g.id === g
 
 export function getLesson(gradeId: string, lessonId: string) {
   const grade = getGrade(gradeId); if (!grade) return undefined
-  const flat = grade.units.flatMap((u) => u.lessons.map((lesson) => ({ lesson, unit: u })))
-  const i = flat.findIndex((x) => x.lesson.id === lessonId); if (i < 0) return undefined
-  return { grade, unit: flat[i].unit, lesson: flat[i].lesson, prev: flat[i - 1]?.lesson, next: flat[i + 1]?.lesson }
+  const flat = grade.units.flatMap((unit) => unit.lessons.map((lesson) => ({ lesson, unit })))
+  // New URLs include the unit ID, so repeated lesson IDs in different units stay distinct.
+  // Keep old URLs working by resolving an unprefixed ID to its first historical match.
+  const separator = lessonId.indexOf('-')
+  const unitId = separator > 0 ? lessonId.slice(0, separator) : undefined
+  const plainLessonId = unitId ? lessonId.slice(separator + 1) : lessonId
+  const i = flat.findIndex((item) => item.lesson.id === plainLessonId && (!unitId || item.unit.id === unitId))
+  if (i < 0) return undefined
+  return {
+    grade,
+    unit: flat[i].unit,
+    lesson: flat[i].lesson,
+    prev: flat[i - 1]?.lesson,
+    prevUnit: flat[i - 1]?.unit,
+    next: flat[i + 1]?.lesson,
+    nextUnit: flat[i + 1]?.unit,
+  }
 }
