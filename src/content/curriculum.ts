@@ -60,7 +60,7 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب في المختبر الموسيقي', description: 'طبّق الفكرة الموسيقية التي تعلمتها باستخدام أدوات المختبر.' },
-            { type: 'wordwall', url: '', title: 'لعبة Wordwall للدرس', description: 'مكان مخصص لإضافة لعبة Wordwall الخاصة بالدرس.' },
+            { type: 'wordwall', url: 'https://share.google/qSAR09aySIWUNwVtJ', title: 'نشاط Wordwall: النوار والسكتة', description: 'نشاط تفاعلي خارجي لدرس العلامة الإيقاعية النوار والسكتة المقابلة لها.' },
           ],
         },
         {
