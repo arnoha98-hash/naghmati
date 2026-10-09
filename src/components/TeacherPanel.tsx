@@ -24,6 +24,7 @@ export default function TeacherPanel({ lesson }: { lesson: Lesson }) {
 
   if (embed) {
     return (
+      <div className="space-y-4">
       <div className="rounded-[2rem] bg-ink p-2 md:p-3 shadow-chunky">
         <div className="relative w-full aspect-video rounded-[1.5rem] overflow-hidden bg-black">
           <iframe
@@ -37,7 +38,7 @@ export default function TeacherPanel({ lesson }: { lesson: Lesson }) {
         </div>
         <p className="text-white/60 text-sm text-center pt-2">🎬 {providerName(embed)}</p>
       </div>
-      <div className="rounded-[2rem] bg-white p-5 shadow-chunky mt-4">
+      <div className="rounded-[2rem] bg-white p-5 shadow-chunky">
         <div className="font-extrabold text-lg mb-2">🎬 فيديو شرح الدرس من YouTube</div>
         {anthemVideo ? (
           <div className="relative aspect-video rounded-2xl overflow-hidden bg-ink/5">
