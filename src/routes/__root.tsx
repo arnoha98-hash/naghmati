@@ -1,4 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { useEffect } from 'react'
+import { playClick } from '@/lib/audio'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 
@@ -36,6 +38,15 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target
+      if (!(target instanceof Element)) return
+      if (target.closest('button, a, input, select, textarea, [role="button"], summary, label')) playClick()
+    }
+    document.addEventListener('click', handleClick, true)
+    return () => document.removeEventListener('click', handleClick, true)
+  }, [])
   return (
     <html lang="ar" dir="rtl">
       <head>
