@@ -3,7 +3,7 @@ import { getLesson } from '@/content/curriculum'
 import { gradeTheme } from '@/lib/theme'
 import { lessonKey } from '@/lib/progress'
 import TeacherPanel from '@/components/TeacherPanel'
-import PreLessonActivity from '@/components/PreLessonActivity'
+import PreLessonActivity, { DifferentSoundQuiz, PitchWarmup } from '@/components/PreLessonActivity'
 import FlagColoring from '@/components/FlagColoring'
 import Quiz from '@/components/Quiz'
 import ActivityCard, { isActivityReady } from '@/components/ActivityCard'
@@ -30,7 +30,7 @@ function LessonPage() {
   const { gradeId, lessonId } = Route.useLoaderData()
   const { grade, unit, lesson, prev, prevUnit, next, nextUnit } = getLesson(gradeId, lessonId)!
   const t = gradeTheme[grade.theme]
-  const activities = lesson.activities.filter(isActivityReady)
+  const activities = lesson.activities.filter(isActivityReady).sort((a, b) => (a.type === 'wordwall' ? 0 : 1) - (b.type === 'wordwall' ? 0 : 1))
 
   return (
     <div>
@@ -98,7 +98,13 @@ function LessonPage() {
 
         <section id="quiz" className="scroll-mt-24">
           <SectionTitle n={3} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
-          <Quiz key={`${unit.id}-${lesson.id}`} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />
+          {lesson.quiz.length > 0 && <Quiz key={`${unit.id}-${lesson.id}`} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />}
+          {lesson.title === 'الحِدّة والغلظة – السرعة والبطء' && (
+            <div className="mt-6">
+              <PitchWarmup />
+              <DifferentSoundQuiz />
+            </div>
+          )}
           {(lesson.title === 'النشيد الوطني' || lesson.title === 'نشيد (عَلَم بلادي)') && (
             <div className="mt-6">
               <h3 className="text-xl md:text-2xl font-extrabold mb-3">🎨 سؤال تفاعلي: لوّن علم سلطنة عُمان</h3>
