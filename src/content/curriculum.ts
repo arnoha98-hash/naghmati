@@ -37,7 +37,7 @@ const grade1: Grade = {
           ],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب العزف على البيانو', description: 'افتح البيانو التفاعلي وجرّب النغمات. أضيفي لحن النشيد السلطاني بعد توفير النغمات المعتمدة.' },
-            { type: 'wordwall', url: 'https://share.google/qSAR09aySIWUNwVtJ', title: 'نشاط Wordwall', description: 'افتح النشاط التفاعلي المرسل من المعلمة.' },
+            { type: 'wordwall', url: '', title: 'نشاط Wordwall', description: 'يمكن للمعلمة إضافة رابط نشاط Wordwall الخاص بهذا الدرس.' },
           ],
         },
         {
