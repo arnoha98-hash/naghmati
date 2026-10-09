@@ -106,7 +106,7 @@ function HabouhWarmup() {
   return (
     <div className="text-center">
       <div className="rounded-3xl bg-white p-4 mb-4"><HabouhIllustration /></div>
-      <p className="text-xl font-extrabold mb-4">بصّوا على الشخصية الكرتونية دي… تتوقعوا اسمها إيه؟</p>
+      <p className="text-xl font-extrabold mb-4">انظروا إلى هذه الشخصية الكرتونية، ما اسمها؟</p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {options.map((option, index) => <button type="button" key={option} onClick={() => setChoice(index)} className={`rounded-2xl border-2 p-4 text-lg font-extrabold transition ${choice === index ? (index === 0 ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}>{option}</button>)}
       </div>
@@ -127,7 +127,14 @@ export default function PreLessonActivity({ lesson }: { lesson: Lesson }) {
     <section className="rounded-[2rem] bg-gradient-to-br from-amber-100 via-white to-sky-100 border-2 border-white p-5 md:p-7 shadow-chunky">
       <div className="flex items-center gap-3 mb-4"><span className="grid place-items-center w-14 h-14 rounded-2xl bg-amber-300 text-3xl">💡</span><div><h2 className="text-2xl md:text-3xl font-extrabold">تهيّأ قبل أن تتعلّم</h2><p className="text-ink/65">نشاط قصير مرتبط بموضوع الدرس.</p></div></div>
       <p className="text-xl font-extrabold mb-4">{activity.question}</p>
-      {lesson.title === 'الحِدّة والغلظة – السرعة والبطء' ? (
+      {lesson.warmupVideoUrl ? (
+        <div className="rounded-2xl bg-ink p-2 md:p-3 shadow-chunky">
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+            <iframe src={lesson.warmupVideoUrl} title={`تمهيد درس ${lesson.title}`} className="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen loading="lazy" />
+          </div>
+          <p className="text-sm text-center text-ink/65 mt-3">شاهد الفيديو التمهيدي، ثم انتقل إلى فيديو الشرح والنشاط التفاعلي.</p>
+        </div>
+      ) : lesson.title === 'الحِدّة والغلظة – السرعة والبطء' ? (
         <PitchWarmup />
       ) : lesson.title === 'اللعبة الشعبية (حبّوه موه تدوري)' ? (
         <HabouhWarmup />
