@@ -37,6 +37,17 @@ export default function TeacherPanel({ lesson }: { lesson: Lesson }) {
         </div>
         <p className="text-white/60 text-sm text-center pt-2">🎬 {providerName(embed)}</p>
       </div>
+      <div className="rounded-[2rem] bg-white p-5 shadow-chunky mt-4">
+        <div className="font-extrabold text-lg mb-2">🎬 فيديو شرح الدرس من YouTube</div>
+        {anthemVideo ? (
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-ink/5">
+            <iframe src={anthemVideo} title={`شرح ${lesson.title}`} className="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media; fullscreen" allowFullScreen />
+          </div>
+        ) : (
+          <div className="rounded-2xl bg-cream p-5 text-ink/65">مكان مخصص لفيديو شرح «{lesson.title}». سيظهر الفيديو هنا عند إضافة رابط YouTube من لوحة المعلمة.</div>
+        )}
+      </div>
+    </div>
     )
   }
 
