@@ -98,7 +98,7 @@ function LessonPage() {
 
         <section id="quiz" className="scroll-mt-24">
           <SectionTitle n={3} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
-          <Quiz key={lesson.id} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />
+          <Quiz key={`${unit.id}-${lesson.id}`} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />
         </section>
 
         <section id="practice" className="scroll-mt-24">
