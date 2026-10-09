@@ -1,4 +1,7 @@
-/** رابط صورة مُحسّنة عبر Netlify Image CDN */
-export function img(path: string, width: number) {
-  return `/.netlify/images?url=${encodeURIComponent(path)}&w=${width}&fm=webp`
+
+/** مسارات الصور المباشرة المناسبة للنشر على GitHub Pages */
+export function img(path: string, _width?: number) {
+  const cleanPath = path.replace(/^\/+/, '')
+  const base = import.meta.env.BASE_URL || '/'
+  return `${base.endsWith('/') ? base : `${base}/`}${cleanPath}`
 }
