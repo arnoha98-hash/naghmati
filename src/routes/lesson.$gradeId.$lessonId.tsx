@@ -98,7 +98,14 @@ function LessonPage() {
 
         <section id="quiz" className="scroll-mt-24">
           <SectionTitle n={3} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
-          {lesson.quiz.length > 0 && <Quiz key={`${unit.id}-${lesson.id}`} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />}
+          {lesson.title === 'اللعبة الشعبية (حبّوه موه تدوري)' ? (
+            <div className="rounded-[2rem] bg-white p-4 md:p-6 shadow-chunky">
+              <h3 className="text-xl font-extrabold mb-3">🎮 نشاط تفاعلي: حبّوه موه تدوري</h3>
+              <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: '5 / 3.8' }}>
+                <iframe src="https://wordwall.net/embed/cd8de31fc2c6471fb356bd654f053838?themeId=65&templateId=30&fontStackId=0" title="سؤال تفاعلي: حبّوه موه تدوري" className="absolute inset-0 h-full w-full border-0" allowFullScreen loading="lazy" />
+              </div>
+            </div>
+          ) : lesson.quiz.length > 0 && <Quiz key={`${unit.id}-${lesson.id}`} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />}
           {lesson.title === 'الحِدّة والغلظة – السرعة والبطء' && (
             <div className="mt-6">
               <PitchWarmup />
