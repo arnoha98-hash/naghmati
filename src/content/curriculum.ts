@@ -29,12 +29,7 @@ const grade1: Grade = {
           ],
           teacher: { url: 'https://www.youtube.com/embed/MxsoSw5j23o' },
           anthem: { explanationVideoUrl: '', listeningAudioUrl: '', listeningVideoUrl: '' },
-          quiz: [
-            {
-              question: 'أي عنوان يطابق الدرس الحالي؟', emoji: '🎯',
-              options: ['النشيد الوطني', 'درس آخر في المهارات الموسيقية', 'نشاط خارج المنهج', 'المختبر الموسيقي فقط'], answer: 0, hint: 'اقرأ عنوان الدرس أعلى الصفحة ثم اختر البطاقة المطابقة.',
-            },
-          ],
+          quiz: [],
           activities: [
             { type: 'lab', tool: 'piano', title: 'جرّب العزف على البيانو', description: 'افتح البيانو التفاعلي وجرّب النغمات. أضيفي لحن النشيد السلطاني بعد توفير النغمات المعتمدة.' },
             { type: 'wordwall', url: 'https://wordwall.net/embed/83acd95bdcae4765ab416c1bda27111a?themeId=66&templateId=3&fontStackId=0', title: 'نشاط السلام السلطاني', description: 'نشاط تفاعلي للتدرب على السلام السلطاني.' },
@@ -78,8 +73,8 @@ const grade1: Grade = {
           warmupVideoUrl: 'https://www.youtube.com/embed/asVXo9Ry1OQ',
           quiz: [
             {
-              question: 'أي عنوان يطابق الدرس الحالي؟', emoji: '🎯',
-              options: ['الحِدّة والغلظة – السرعة والبطء', 'درس آخر في المهارات الموسيقية', 'نشاط خارج المنهج', 'المختبر الموسيقي فقط'], answer: 0, hint: 'اقرأ عنوان الدرس أعلى الصفحة ثم اختر البطاقة المطابقة.',
+              question: 'أيّ زوج من الأصوات يوضح اختلاف طبقة الصوت؟', emoji: '🎚️',
+              options: ['صوت عصفور حاد وصوت أسد غليظ', 'صوتان متطابقان', 'صمت وصمت', 'لونان مختلفان'], answer: 0, hint: 'الصوت الحاد يبدو رفيعًا، والصوت الغليظ يبدو عميقًا.',
             },
           ],
           activities: [
