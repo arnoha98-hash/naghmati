@@ -47,8 +47,8 @@ function playPitch(frequency: number) {
   void context.resume().then(() => {
     const startAt = context.currentTime
     gain.gain.setValueAtTime(0.0001, startAt)
-    gain.gain.exponentialRampToValueAtTime(0.85, startAt + 0.04)
-    gain.gain.setValueAtTime(0.85, startAt + 0.45)
+    gain.gain.exponentialRampToValueAtTime(0.95, startAt + 0.04)
+    gain.gain.setValueAtTime(0.95, startAt + 0.45)
     gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.75)
     oscillator.connect(gain)
     gain.connect(context.destination)
@@ -60,7 +60,7 @@ function playPitch(frequency: number) {
 
 export function PitchWarmup() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
-  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 130, answer: 1 }]
+  const sounds = [{ label: 'الصوت الأول', frequency: 880, answer: 0 }, { label: 'الصوت الثاني', frequency: 82, answer: 1 }]
   return (
     <div className="space-y-4">
       <p className="text-lg font-bold">اضغط على زر الاستماع لكل صوت، وبعدها اختار الصورة المناسبة: الطائر للصوت الحاد 🐦 والأسد للصوت الغليظ 🦁.</p>
@@ -208,14 +208,14 @@ export default function PreLessonActivity({ lesson }: { lesson: Lesson }) {
         <HabouhWarmup />
       ) : isNationalAnthem ? (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {(['oman', 'japan', 'france'] as const).map((country, i) => <button key={country} onClick={() => { setChoice(i); i === activity.answer ? playCorrect() : playWrong() }} className={`rounded-2xl border-2 p-4 font-bold transition ${choice === i ? (i === activity.answer ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}><FlagIllustration country={country}/><span className="block mt-3">{['سلطنة عُمان', 'اليابان', 'فرنسا'][i]}</span></button>)}
+          {(['oman', 'japan', 'france'] as const).map((country, i) => <button key={country} onClick={() => { setChoice(i); if (lesson.title !== 'اللعبة الشعبية (حبّوه موه تدوري)') { i === activity.answer ? playCorrect() : playWrong() } }} className={`rounded-2xl border-2 p-4 font-bold transition ${choice === i ? (i === activity.answer ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}><FlagIllustration country={country}/><span className="block mt-3">{['سلطنة عُمان', 'اليابان', 'فرنسا'][i]}</span></button>)}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {activity.options.map((option, i) => <button key={option} onClick={() => setChoice(i)} className={`rounded-2xl border-2 p-4 text-lg font-bold transition ${choice === i ? (i === activity.answer ? 'border-emerald-500 bg-emerald-100' : 'border-rose-400 bg-rose-100') : 'border-white bg-white hover:bg-amber-50'}`}>{option}</button>)}
         </div>
       )}
-      {choice !== null && <p className="font-extrabold text-lg mt-4" aria-live="polite">{choice === activity.answer ? 'أحسنت! إجابة رائعة 🌟' : 'محاولة جميلة! جرّب اختيارًا آخر.'}</p>}
+      {choice !== null && lesson.title !== 'اللعبة الشعبية (حبّوه موه تدوري)' && <p className="font-extrabold text-lg mt-4" aria-live="polite">{choice === activity.answer ? 'أحسنت! إجابة رائعة 🌟' : 'محاولة جميلة! جرّب اختيارًا آخر.'}</p>}
       {activity.clue && <p className="text-ink/65 mt-3">{activity.clue}</p>}
     </section>
   )
