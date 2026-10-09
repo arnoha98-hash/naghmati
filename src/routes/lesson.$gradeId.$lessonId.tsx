@@ -99,6 +99,12 @@ function LessonPage() {
         <section id="quiz" className="scroll-mt-24">
           <SectionTitle n={3} title="أسئلة تفاعلية" emoji="🃏" sub="اختر البطاقة الصحيحة واجمع النجوم!" />
           <Quiz key={`${unit.id}-${lesson.id}`} questions={lesson.quiz} progressKey={lessonKey(grade.id, `${unit.id}-${lesson.id}`)} />
+          {(lesson.title === 'النشيد الوطني' || lesson.title === 'نشيد (عَلَم بلادي)') && (
+            <div className="mt-6">
+              <h3 className="text-xl md:text-2xl font-extrabold mb-3">🎨 سؤال تفاعلي: لوّن علم سلطنة عُمان</h3>
+              <FlagColoring />
+            </div>
+          )}
         </section>
 
         <section id="practice" className="scroll-mt-24">
@@ -116,12 +122,6 @@ function LessonPage() {
               <Link to="/lab" className="inline-block mt-5 rounded-full bg-amber-400 px-6 py-3 font-extrabold shadow-chunky">
                 أو جرّب المختبر الموسيقي 🎹
               </Link>
-            </div>
-          )}
-          {(lesson.title === 'النشيد الوطني' || lesson.title === 'نشيد (عَلَم بلادي)') && (
-            <div className="mt-6">
-              <h3 className="text-xl md:text-2xl font-extrabold mb-3">🎨 تطبيق عملي: لوّن علم سلطنة عُمان</h3>
-              <FlagColoring />
             </div>
           )}
         </section>
