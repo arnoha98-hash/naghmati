@@ -7,6 +7,7 @@ import PreLessonActivity, { DifferentSoundQuiz, PitchWarmup } from '@/components
 import FlagColoring from '@/components/FlagColoring'
 import Quiz from '@/components/Quiz'
 import ActivityCard, { isActivityReady } from '@/components/ActivityCard'
+import BookActivities from '@/components/BookActivities'
 
 export const Route = createFileRoute('/lesson/$gradeId/$lessonId')({
   loader: ({ params }) => {
@@ -23,7 +24,8 @@ const steps = [
   { id: 'warmup', n: 1, label: 'تهيّأ', emoji: '💡' },
   { id: 'watch', n: 2, label: 'شاهد وتعلّم', emoji: '🎬' },
   { id: 'quiz', n: 3, label: 'أجب عن الأسئلة', emoji: '🃏' },
-  { id: 'practice', n: 4, label: 'طبّق والعب', emoji: '🎮' },
+  { id: 'book-activities', n: 4, label: 'الأنشطة', emoji: '📚' },
+  { id: 'practice', n: 5, label: 'طبّق والعب', emoji: '🎮' },
 ]
 
 function LessonPage() {
@@ -120,8 +122,13 @@ function LessonPage() {
           )}
         </section>
 
+        <section id="book-activities" className="scroll-mt-24">
+          <SectionTitle n={4} title="الأنشطة" emoji="📚" sub="أنشطة الكتاب وتسليم الإجابات للمعلمة" />
+          <BookActivities lessonTitle={lesson.title} />
+        </section>
+
         <section id="practice" className="scroll-mt-24">
-          <SectionTitle n={4} title="التطبيق والأنشطة الموسيقية" emoji="🎮" />
+          <SectionTitle n={5} title="التطبيق والأنشطة الموسيقية" emoji="🎮" />
           {activities.length > 0 ? (
             <div className="space-y-4">
               {activities.map((a, i) => (
