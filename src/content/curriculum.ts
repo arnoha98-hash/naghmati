@@ -31,7 +31,7 @@ const grade1: Grade = {
           anthem: { explanationVideoUrl: '', listeningAudioUrl: '', listeningVideoUrl: '' },
           quiz: [],
           activities: [
-            { type: 'lab', tool: 'piano', title: 'جرّب العزف على البيانو', description: 'افتح البيانو التفاعلي وجرّب النغمات. أضيفي لحن النشيد السلطاني بعد توفير النغمات المعتمدة.' },
+            { type: 'lab', tool: 'piano', title: 'جرّب العزف على البيانو', description: 'تدرّب على عزف المقطع الأول من السلام السلطاني العُماني باستخدام النغمات التفاعلية في البيانو.' },
             { type: 'wordwall', url: 'https://wordwall.net/embed/83acd95bdcae4765ab416c1bda27111a?themeId=66&templateId=3&fontStackId=0', title: 'نشاط السلام السلطاني', description: 'نشاط تفاعلي للتدرب على السلام السلطاني.' },
           ],
         },
