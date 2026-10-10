@@ -14,7 +14,8 @@ export default function FlagColoring() {
 
   const parts = [
     // Align paintable overlays with the three actual flag bands in the uploaded template.
-    // Keep the left emblem area untouched so the khanjar and crossed swords remain visible.
+    // The red vertical hoist also runs behind the emblem; a translucent overlay keeps the original emblem visible.
+    { id: 'pole', label: 'الشريط الأحمر خلف الخنجر والسيفين', style: { left: '1.5%', top: '6%', width: '32.2%', height: '88%' } },
     { id: 'top', label: 'الشريط العلوي', style: { left: '33.7%', top: '6%', width: '64.5%', height: '27.5%' } },
     { id: 'middle', label: 'الشريط الأوسط', style: { left: '33.7%', top: '35.5%', width: '64.5%', height: '28%' } },
     { id: 'bottom', label: 'الشريط السفلي', style: { left: '33.7%', top: '65.5%', width: '64.5%', height: '28%' } },
