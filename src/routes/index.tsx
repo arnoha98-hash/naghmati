@@ -111,6 +111,20 @@ function Home() {
         </div>
       </section>
 
+      {/* دليل المنصة */}
+      <section className="max-w-6xl mx-auto px-4 pb-12">
+        <Link to="/guide" className="group flex flex-col sm:flex-row items-center justify-between gap-5 rounded-[2.5rem] bg-gradient-to-l from-violet-600 via-violet-500 to-sky-500 p-6 md:p-8 text-white shadow-chunky transition hover:-translate-y-1">
+          <div className="flex items-center gap-4">
+            <span className="grid place-items-center w-16 h-16 rounded-2xl bg-white/20 text-4xl">📘</span>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-extrabold mb-1">دليل المنصة</h2>
+              <p className="text-white/90">للطلاب وأولياء الأمور والمعلمين: تعرّفوا على نغماتي وكيفية استخدامها.</p>
+            </div>
+          </div>
+          <span className="rounded-full bg-white text-violet-700 px-6 py-3 font-extrabold group-hover:scale-105 transition">استكشف الدليل ←</span>
+        </Link>
+      </section>
+
       {/* المختبر + كيف تعمل */}
       <section className="max-w-6xl mx-auto px-4 py-10">
         <Link
