@@ -29,6 +29,7 @@ function PlatformGuide() {
         <div className="text-6xl md:text-7xl mb-4" aria-hidden>🎵📘</div>
         <p className="inline-block rounded-full bg-white/20 px-4 py-1.5 font-bold mb-4">أهلًا بكم في نغماتي</p>
         <h1 className="text-3xl md:text-5xl font-extrabold mb-4">دليل منصة نغماتي</h1>
+        <p className="text-lg font-extrabold text-white/95 mb-4">إعداد المعلمة: مي العسكري</p>
         <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
           دليلكم للتعلّم والاستكشاف والتطبيق الموسيقي. هذا الدليل مخصص للطلاب وأولياء الأمور والمعلمين للتعرّف على أقسام المنصة وطريقة استخدامها.
         </p>
@@ -106,6 +107,7 @@ function PlatformGuide() {
         <div className="text-4xl mb-2">🎶</div>
         <h2 className="text-2xl font-extrabold mb-2">هل أنت مستعد لبدء الرحلة؟</h2>
         <p className="text-ink/75 mb-5">اختر صفك، وافتح درسًا، ثم تعلّم وجرّب واعزف!</p>
+        <p className="text-ink/70 font-bold mb-5">مع تحيات المعلمة مي العسكري، نتمنى لكم رحلة تعلّم موسيقية ممتعة 🎵</p>
         <Link to="/" className="inline-block rounded-full bg-ink text-white px-7 py-3 font-extrabold shadow-chunky hover:opacity-90 transition">ابدأ من الرئيسية 🚀</Link>
       </section>
     </div>
