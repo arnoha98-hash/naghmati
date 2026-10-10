@@ -29,7 +29,7 @@ function Home() {
                 الموسيقي الصغير!
               </span>
             </h1>
-            <p className="text-lg font-extrabold text-violet-700 mb-3">🎼 إعداد وتقديم المعلمة مي العسكري</p>
+            <p className="text-lg font-extrabold text-violet-700 mb-3">🎼 إعداد وتقديم أ/ مي العسكري</p>
             <p className="text-xl text-ink/70 mb-8 max-w-lg mx-auto md:mx-0">
               تعلّم، والعب، واعزف! اختر صفك الدراسي لتبدأ رحلتك مع النغمات والإيقاعات. لا تحتاج إلى أي تسجيل 🎉
             </p>
