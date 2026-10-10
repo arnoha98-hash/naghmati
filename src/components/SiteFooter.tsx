@@ -8,7 +8,7 @@ export default function SiteFooter() {
           🎶 نغماتي — منصة مفتوحة لطلاب المهارات الموسيقية في سلطنة عُمان، بدون تسجيل دخول.
         </p>
         <Link to="/teacher" className="rounded-full bg-ink text-white px-5 py-2 font-bold hover:bg-ink/85 transition">
-          👩‍🏫 دليل المعلم: إضافة الدروس
+          📘 دليل المنصة
         </Link>
       </div>
     </footer>
