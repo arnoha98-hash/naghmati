@@ -7,7 +7,7 @@ const PROMPTS = [
  {id:'pride',text:'بالعز والأمان',emoji:'👮🏻‍♂️',answer:'police'},
  {id:'sky',text:'فارقتي هام السماء',emoji:'☁️🌤️',answer:'sky'},
 ]
-const PICTURES = [{id:'sky',label:'السماء',emoji:'☁️🌤️'},{id:'people',label:'الشعب العُماني',emoji:'🧒🏻👧🏻'},{id:'prayer',label:'يد تدعو',emoji:'🙏🏻'},{id:'police',label:'شرطة عُمان السلطانية',emoji:'👮🏻‍♂️'}]
+const PICTURES = [{id:'sky',label:'السماء',emoji:'☁️🌤️'},{id:'people',label:'الشعب العُماني',emoji:'🧒🏻👧🏻'},{id:'prayer',label:'دعاء',emoji:'🙏🏻'},{id:'police',label:'شرطة عُمان السلطانية',emoji:'👮🏻‍♂️'}]
 export default function BookActivities({lessonTitle}:{lessonTitle:string}) {
  const [name,setName]=useState(''),[grade,setGrade]=useState('')
  const [tiles,setTiles]=useState(()=>[3,0,7,2,5,1,8,4,6]),[selected,setSelected]=useState<number|null>(null)
