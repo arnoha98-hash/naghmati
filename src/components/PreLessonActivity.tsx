@@ -33,7 +33,7 @@ const warmups: Record<string, Warmup> = {
 function FlagIllustration({ country }: { country: 'oman' | 'japan' | 'france' }) {
   if (country === 'japan') return <svg viewBox="0 0 120 72" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم اليابان"><rect width="120" height="72" fill="white"/><circle cx="60" cy="36" r="18" fill="#bc002d"/></svg>
   if (country === 'france') return <svg viewBox="0 0 120 72" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم فرنسا"><rect width="40" height="72" fill="#0055a4"/><rect x="40" width="40" height="72" fill="white"/><rect x="80" width="40" height="72" fill="#ef4135"/></svg>
-  return <svg viewBox="0 0 120 72" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم سلطنة عمان"><rect width="120" height="24" fill="#fff"/><rect y="24" width="120" height="24" fill="#d8232a"/><rect y="48" width="120" height="24" fill="#00843d"/><rect width="25" height="72" fill="#d8232a"/><g transform="translate(3 5)" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"><path d="M4 8 Q8 2 15 5 L18 9 L14 12 L10 10 L7 15 L10 21 L7 27 L11 32 L8 37 L4 34 L6 28 L2 22 L5 15 L2 11Z" fill="#fff"/><path d="M5 10 L13 15 M5 30 L13 25 M13 15 L18 20 L13 25" stroke="#d8232a" strokeWidth="1.5"/><path d="M3 8 L8 3 L15 5" stroke="#fff" strokeWidth="2.5"/><path d="M4 37 L8 34" stroke="#fff" strokeWidth="3"/></g></svg>
+  return <img src="/naghmati/oman-flag.jpg" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم سلطنة عُمان الأصلي" />
 }
 
 function playPitch(frequency: number) {
