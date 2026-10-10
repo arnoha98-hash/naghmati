@@ -113,7 +113,7 @@ function Home() {
 
       {/* دليل المنصة */}
       <section className="max-w-6xl mx-auto px-4 pb-12">
-        <Link to="/guide" className="group flex flex-col sm:flex-row items-center justify-between gap-5 rounded-[2.5rem] bg-gradient-to-l from-violet-600 via-violet-500 to-sky-500 p-6 md:p-8 text-white shadow-chunky transition hover:-translate-y-1">
+        <Link to="/teacher" className="group flex flex-col sm:flex-row items-center justify-between gap-5 rounded-[2.5rem] bg-gradient-to-l from-violet-600 via-violet-500 to-sky-500 p-6 md:p-8 text-white shadow-chunky transition hover:-translate-y-1">
           <div className="flex items-center gap-4">
             <span className="grid place-items-center w-16 h-16 rounded-2xl bg-white/20 text-4xl">📘</span>
             <div>
