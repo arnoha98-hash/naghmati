@@ -33,7 +33,7 @@ const warmups: Record<string, Warmup> = {
 function FlagIllustration({ country }: { country: 'oman' | 'japan' | 'france' }) {
   if (country === 'japan') return <svg viewBox="0 0 120 72" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم اليابان"><rect width="120" height="72" fill="white"/><circle cx="60" cy="36" r="18" fill="#bc002d"/></svg>
   if (country === 'france') return <svg viewBox="0 0 120 72" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم فرنسا"><rect width="40" height="72" fill="#0055a4"/><rect x="40" width="40" height="72" fill="white"/><rect x="80" width="40" height="72" fill="#ef4135"/></svg>
-  return <img src="/naghmati/oman-flag.jpg" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم سلطنة عُمان الأصلي" />
+  return <img src="https://raw.githubusercontent.com/arnoha98-hash/naghmati/main/oman-flag.jpg" className="w-full max-w-[120px] mx-auto rounded-md border border-slate-200" role="img" aria-label="علم سلطنة عُمان الأصلي" />
 }
 
 function playPitch(frequency: number) {
