@@ -13,10 +13,11 @@ export default function FlagColoring() {
   const paint = (part: string) => setFills((old) => ({ ...old, [part]: eraser ? 'transparent' : color }))
 
   const parts = [
-    { id: 'top', label: 'الشريط العلوي', style: { left: '20%', top: '0%', width: '80%', height: '33.333%' } },
-    { id: 'middle', label: 'الشريط الأوسط', style: { left: '20%', top: '33.333%', width: '80%', height: '33.333%' } },
-    { id: 'bottom', label: 'الشريط السفلي', style: { left: '20%', top: '66.666%', width: '80%', height: '33.334%' } },
-    { id: 'pole', label: 'الشريط الجانبي', style: { left: '0%', top: '0%', width: '20%', height: '100%' } },
+    // Align paintable overlays with the three actual flag bands in the uploaded template.
+    // Keep the left emblem area untouched so the khanjar and crossed swords remain visible.
+    { id: 'top', label: 'الشريط العلوي', style: { left: '33.7%', top: '6%', width: '64.5%', height: '27.5%' } },
+    { id: 'middle', label: 'الشريط الأوسط', style: { left: '33.7%', top: '35.5%', width: '64.5%', height: '28%' } },
+    { id: 'bottom', label: 'الشريط السفلي', style: { left: '33.7%', top: '65.5%', width: '64.5%', height: '28%' } },
   ]
 
   return (
@@ -29,7 +30,7 @@ export default function FlagColoring() {
         <button type="button" onClick={() => setFills({})} className="rounded-full bg-ink/5 px-4 py-2 font-bold">↺ مسح الكل</button>
       </div>
       <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-xl border border-ink/10">
-        <img src="https://raw.githubusercontent.com/arnoha98-hash/naghmati/main/oman-flag-coloring.jpg" alt="نموذج تلوين علم سلطنة عُمان الأصلي بالخنجر والسيفين" className="block w-full h-auto" />
+        <img src="https://raw.githubusercontent.com/arnoha98-hash/naghmati/main/oman-flag-coloring.jpg" alt="نموذج تلوين علم سلطنة عُمان الأصلي بالخنجر والسيفين" className="block w-full h-auto" style={{ position: 'relative', zIndex: 0 }} />
         {parts.map((part) => <button type="button" key={part.id} aria-label={part.label} title={part.label} onClick={() => paint(part.id)} className="absolute border-0 p-0" style={{ ...part.style, backgroundColor: fills[part.id] ?? 'transparent', opacity: fills[part.id] ? 0.48 : 1, cursor: 'pointer' }} />)}
       </div>
       <p className="mt-3 text-sm text-ink/60">اضغط على كل شريط لتلوينه. لإعادة البداية، اضغط «مسح الكل».</p>
