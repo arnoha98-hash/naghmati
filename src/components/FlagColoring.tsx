@@ -29,7 +29,7 @@ export default function FlagColoring() {
         <button type="button" onClick={() => setFills({})} className="rounded-full bg-ink/5 px-4 py-2 font-bold">↺ مسح الكل</button>
       </div>
       <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-xl border border-ink/10">
-        <img src="/naghmati/oman-flag-coloring.jpg" alt="نموذج تلوين علم سلطنة عُمان الأصلي بالخنجر والسيفين" className="block w-full h-auto" />
+        <img src="https://raw.githubusercontent.com/arnoha98-hash/naghmati/main/oman-flag-coloring.jpg" alt="نموذج تلوين علم سلطنة عُمان الأصلي بالخنجر والسيفين" className="block w-full h-auto" />
         {parts.map((part) => <button type="button" key={part.id} aria-label={part.label} title={part.label} onClick={() => paint(part.id)} className="absolute border-0 p-0" style={{ ...part.style, backgroundColor: fills[part.id] ?? 'transparent', opacity: fills[part.id] ? 0.48 : 1, cursor: 'pointer' }} />)}
       </div>
       <p className="mt-3 text-sm text-ink/60">اضغط على كل شريط لتلوينه. لإعادة البداية، اضغط «مسح الكل».</p>
